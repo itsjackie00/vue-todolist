@@ -25,6 +25,21 @@ createApp({
         
 
     },
+    computed: {
+        filterTodo() {
+            return this.todo.filter((el) => {
+                if(this.done === ''){
+                    return true;
+                }
+                if(this.done === 'false'){
+                    return el.done === false;
+                }
+                if(this.done === 'true'){
+                    return el.done === true;
+                }
+            })
+        }
+    },
     mounted(){
         console.log(this.todoList);
     }
