@@ -1,33 +1,38 @@
-import {todoList} from './data.js';
+import { todoList } from './data.js';
 
-const {createApp} = Vue;
+const { createApp } = Vue;
 
 //crea l'applicazione
 createApp({
-    data(){
-        return{
+    data() {
+        return {
             todoList: todoList,
             itemText: '',
-            done:'',
+            done: '',
         }
     },
     methods: {
-        toggleDone(id){
+        toggleDone(id) {
             const item = this.todoList.find((el) => {
                 return el.id === id;
             })
             console.log(item);
-            if(item){
+            if (item) {
                 item.done = !item.done;
             }
             this.todo[item].done = !this.todo[item].done
         },
-        
+        removeItem(id) {
+            const i = this.todoList.findIndex((el) => el.id === id);
+            if (i !== -1) {
+                this.todoList.splice(i, 1);
+            }
+        }
 
     },
     computed: {
-        filterTodo() {
-            return this.todo.filter((el) => {
+        filteredTodo() {
+            return this.todoList.filter((el) => {
                 if(this.done === ''){
                     return true;
                 }
@@ -40,7 +45,7 @@ createApp({
             })
         }
     },
-    mounted(){
+    mounted() {
         console.log(this.todoList);
     }
 }).mount('#app')
