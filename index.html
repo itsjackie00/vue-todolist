@@ -24,6 +24,26 @@
     <header class="bg-light">
         <img src="img/logo.png" alt="Logo">
     </header>
+    <!-- chiusura del header -->
+    <!-- main contiene le cose da fare -->
+    <main class="container my-4 bg-light">
+        <!-- titolo della mia pagina -->
+        <h1>Lista di cose da fare</h1>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between" v-for="(item,index) in filteredTodo" :key="item.id">
+                <span :class="{'text-decoration-line-through': item.done}" @click="toggleDone(item.id)" class="pointer">
+                    {{item.text}}
+                </span> 
+                <i class="fa-solid fa-trash-can pointer" @click="removeItem(item.id)"></i>
+            </li>
+        </ul>
+        <h4 class="mt-3">Inserisci altre cose da fare </h4>
+        <div class="mb-3">
+            <label for="todotext" class="form-label">Inserisci</label>
+            <input type="text" class="form-control" id="todotext" v-model="itemText" @keyup.enter="addTodo()">
+            <button class="btn btn-success  mt-3" @click="addTodo()">Add</button>
+        </div>
+    </main>
    </div>
 
 </body>
