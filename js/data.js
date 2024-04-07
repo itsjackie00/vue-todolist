@@ -34,4 +34,4 @@ export const todoList = [
         text: 'Chiamare il dottore',
         done: false
     }
-];
+]
